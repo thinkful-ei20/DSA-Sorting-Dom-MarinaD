@@ -7,8 +7,11 @@ const data = [89, 30, 25, 32, 72, 70, 51, 42, 25,
   90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87,
   49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
-function qSort(arr, start = 0, end= arr.length) {
 
+const babyData = [9, 2, 17, 3, 89, 30, 25, 32, 72, 70, 51, 42, 25,
+  24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14];
+
+function qSort(arr, start = 0, end= arr.length) {
   if (start >= end) {
     return arr;
   }
@@ -21,11 +24,9 @@ function qSort(arr, start = 0, end= arr.length) {
 }
 
 function partition(arr, start, end) {
-
-  // put pivot in its proper place
   let pivot = arr[end-1];
   let j = start;
-  for (let i = start; i < end; i ++){
+  for (let i = start; i < end-1; i ++){
     if (arr[i] <= pivot){
       const temp = arr[j];
       arr[j] = arr[i];
@@ -33,5 +34,13 @@ function partition(arr, start, end) {
       j++;
     }
   }
+  const temp = arr[j];
+  arr[j] = pivot;
+  arr[end-1] = temp;
   
+  // console.log(j);
+  return j;
 }
+
+qSort(babyData);
+console.log(babyData);
