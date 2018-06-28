@@ -12,6 +12,7 @@ const babyData = [9, 2, 17, 3, 89, 30, 25, 32, 72, 70, 51, 42, 25,
   24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14];
 
 function qSort(arr, start = 0, end= arr.length) {
+  
   if (start >= end) {
     return arr;
   }
@@ -19,7 +20,7 @@ function qSort(arr, start = 0, end= arr.length) {
   //use the partition function 
   const middle = partition(arr, start, end);
   arr = qSort(arr, start, middle);
-  arr = qSort(arr, start+1, end);
+  arr = qSort(arr, middle+1, end);
   return arr;
 }
 
@@ -42,5 +43,5 @@ function partition(arr, start, end) {
   return j;
 }
 
-qSort(babyData);
-console.log(babyData);
+qSort(data);
+console.log(data);
