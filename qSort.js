@@ -8,16 +8,30 @@ const data = [89, 30, 25, 32, 72, 70, 51, 42, 25,
   49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
 function qSort(arr, start = 0, end= arr.length) {
-  if (arr.length <= 1) {
+
+  if (start >= end) {
     return arr;
   }
 
   //use the partition function 
   const middle = partition(arr, start, end);
-  const left = qSort(arr.splice(0,middle));
-  const right = qSort(arr.splice(middle));
+  arr = qSort(arr, start, middle);
+  arr = qSort(arr, start+1, end);
+  return arr;
 }
 
 function partition(arr, start, end) {
 
+  // put pivot in its proper place
+  let pivot = arr[end-1];
+  let j = start;
+  for (let i = start; i < end; i ++){
+    if (arr[i] <= pivot){
+      const temp = arr[j];
+      arr[j] = arr[i];
+      arr[i] = temp;
+      j++;
+    }
+  }
+  
 }
