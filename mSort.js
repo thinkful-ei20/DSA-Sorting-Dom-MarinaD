@@ -7,6 +7,9 @@ const data = [89, 30, 25, 32, 72, 70, 51, 42, 25,
   90, 1, 6, 7, 64, 43, 9, 73, 80, 98, 46, 27, 22, 87,
   49, 83, 6, 39, 42, 51, 54, 84, 34, 53, 78, 40, 14, 5];
 
+const babyData = [9, 2, 17, 3, 89, 30, 25, 32, 72, 70, 51, 42, 25,
+  24, 53, 55, 78, 50, 13, 40, 48, 32, 26, 2, 14];
+
 // find the midpoint
 // slice the array so that 1 side is from index 0 to index midpoint
 // the other side is from midpoint to end of array
@@ -42,8 +45,22 @@ const mSort = arr => {
   // the other side is from midpoint to end of array
   let right = arr.slice(midpoint, arr.length);
   left = mSort(left); right = mSort(right);
+  const result = [];
   let leftI = 0; let rightI = 0; let resultI = 0;
   while (leftI < left.length && rightI < right.length) {
-    
+    if(left[leftI] < right[rightI]){
+      result[resultI++] = left[leftI++];
+    } else {
+      result[resultI++] = right[rightI++];
+    }
   }
+  for( let i = leftI; i < left.length; i++) {
+    result[resultI++] = left[i];
+  }
+  for( let i = rightI; i < right.length; i++) {
+    result[resultI++] = right[i];
+  }
+  return result;
 };
+
+console.log(mSort(data));
